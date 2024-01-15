@@ -48,6 +48,7 @@ using System.Collections.Generic;
 class PrimeNumbersCounter
 {
     // Метод для генерации случайного массива заданной длины
+    // length - длина массива
     public static int[] GenerateRandomArray(int length)
     {
         Random random = new Random();
@@ -60,26 +61,29 @@ class PrimeNumbersCounter
     }
 
     // Метод для подсчета количества простых чисел в массиве и вывода списка простых чисел
+    // numbers - массив, в котором ведется подсчет
     public static void CountPrimeNumbers(int[] numbers, out int count, out List<int> primes)
     {
         count = 0;
         primes = new List<int>();
-        foreach (var number in numbers)
+        for (int i = 0; i < numbers.Length; i++)
         {
-            if (IsPrime(number))
+            if (IsPrime(numbers[i]))
             {
                 count++;
-                primes.Add(number);
+                primes.Add(numbers[i]);
             }
         }
     }
 
     // Метод для определения является ли число простым
+    // number - число, которое проверяется на простоту
     public static bool IsPrime(int number)
     {
         if (number < 2) return false;
 
-        for (int i = 2; i < number; i++)
+        // Проверяем только делители от 2 до корня из числа
+        for (int i = 2; i <= Math.Sqrt(number); i++)
         {
             if (number % i == 0)
             {
@@ -90,6 +94,7 @@ class PrimeNumbersCounter
     }
 
     // Метод для вывода результата на экран
+    // count - количество простых чисел в массиве
     // primes - список простых чисел в массиве
     public static void PrintResult(int count, List<int> primes)
     {

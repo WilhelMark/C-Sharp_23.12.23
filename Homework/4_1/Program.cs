@@ -75,7 +75,7 @@ namespace PrimeNumbersProgram
             {
                 // Запрашиваем у пользователя целое число или символ 'q': выводим сообщение с помощью метода Write класса Console и считываем введенное значение с помощью метода ReadLine.
                 Console.Write("Введите целое число или \"q\", чтобы выйти из игры: ");
-                string input = Console.ReadLine();
+                string input = Console.ReadLine()!;
 
                 // Проверяем, является ли введенный символ 'q': сравниваем введенное значение (приведенное к нижнему регистру с помощью метода ToLower) с символом 'q' 
                 if (!string.IsNullOrEmpty(input) && input.Trim().ToLower() == "q")
@@ -89,7 +89,7 @@ namespace PrimeNumbersProgram
                 if (int.TryParse(input, out int number))
                 {
                     // Если удалось, вызываем метод IsEvenDigitSum для проверки суммы цифр числа на четность: передаем значение переменной number в метод IsEvenDigitSum и проверяем, является ли сумма цифр числа четной.
-                    if (IsEvenDigitSum(number))
+                    if (IsEvenDigitSum(number!))
                     {
                         // Если сумма цифр четная, выводим сообщение о завершении программы и выходим из цикла: выводим сообщение с помощью метода WriteLine класса Console и выходим из цикла с помощью ключевого слова break.
                         Console.WriteLine("Сумма цифр четная. Выход из программы...");

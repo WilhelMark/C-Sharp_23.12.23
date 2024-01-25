@@ -5,7 +5,7 @@
         Console.WriteLine($"Stop: {n}");
         return 1;
     }
-    Console.WriteLine(n);
+    Console.WriteLine($"Возврат: n={n}, fact={n * Fact(n - 1)}");
     return n * Fact(n - 1);
 }
 Console.Write(Fact(5));

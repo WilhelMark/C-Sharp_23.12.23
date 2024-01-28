@@ -1,6 +1,5 @@
 ﻿using System;
 
-//Тело класса будет написано студентом. Класс обязан иметь статический метод PrintResult()
 class UserInputToCompileForTest
 {
     // Печать массива
@@ -16,7 +15,7 @@ class UserInputToCompileForTest
         }
     }
 
-    // Обмен первой с последней строкой
+    // Обмен первой и последней строк массива
     public static int[,] SwapFirstLastRows(int[,] array)
     {
         int rowCount = array.GetLength(0);
@@ -44,7 +43,6 @@ class UserInputToCompileForTest
     }
 }
 
-//Не удаляйте и не меняйте класс Answer!
 class Answer
 {
     public static void Main(string[] args)

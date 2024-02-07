@@ -30,9 +30,12 @@ class Program
 
 // функция растёт очень быстро, например, число A(4,4) настолько велико, что количество цифр в порядке этого числа многократно превосходит количество атомов в наблюдаемой части Вселенной
 using System;
+using System.Collections.Generic;
 
 class Program
 {
+    static Dictionary<string, int> cache = new Dictionary<string, int>();
+
     static void Main()
     {
         Console.Clear();
@@ -41,12 +44,30 @@ class Program
 
         try
         {
-            int result = Akkerman(m, n);
+            if (m < 0 || n < 0)
+            {
+                throw new ArgumentException("m и n должны быть неотрицательными");
+            }
+
+            if (m > 3)
+            {
+                throw new ArgumentException("m не должно превышать 3 для этой реализации");
+            }
+
+            int result = Ackermann(m, n);
             Console.WriteLine($"A({m},{n}) = {result}");
         }
-        catch (Exception ex)
+        catch (FormatException)
         {
-            Console.WriteLine($"Возникла ошибка: {ex.Message}");
+            Console.WriteLine("Ошибка: Неверный формат ввода");
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine($"Ошибка: {ex.Message}");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Произошла ошибка");
         }
     }
 
@@ -64,19 +85,27 @@ class Program
     }
 
     // Рекурсивная функция для вычисления функции Аккермана
-    static int Akkerman(int m, int n)
+    static int Ackermann(int m, int n)
     {
+        string key = m.ToString() + "," + n.ToString();
+        if (cache.ContainsKey(key))
+        {
+            return cache[key];
+        }
+
         if (m == 0)
         {
             return n + 1;
         }
-        else if (m > 0 && n == 0)
+        else if (n == 0)
         {
-            return Akkerman(m - 1, 1);
+            return Ackermann(m - 1, 1);
         }
         else
         {
-            return Akkerman(m - 1, Akkerman(m, n - 1));
+            int result = Ackermann(m - 1, Ackermann(m, n - 1));
+            cache[key] = result;
+            return result;
         }
     }
 }
